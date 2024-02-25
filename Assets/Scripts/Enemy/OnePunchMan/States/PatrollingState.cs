@@ -1,4 +1,5 @@
 ﻿using StatePattern.Enemy;
+using System.Numerics;
 
 public class PatrollingState : IState
 {
