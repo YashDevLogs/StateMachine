@@ -1,10 +1,9 @@
-namespace StatePattern.Enemy
+using StatePattern.Enemy;
+
+public interface IState
 {
-    public interface IState
-    {
-        public OnePunchManController Owner { get; set; }
-        public void OnStateEnter();
-        public void Update();
-        public void OnStateExit();
-    }
+    public EnemyController Owner { get; set; }
+    public void OnStateEnter();
+    public void Update();
+    public void OnStateExit();
 }

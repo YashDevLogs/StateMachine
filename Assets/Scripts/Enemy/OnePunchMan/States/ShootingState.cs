@@ -15,7 +15,7 @@ namespace StatePattern.Enemy
 
         public ShootingState(OnePunchManStateMachine stateMachine) => this.stateMachine = stateMachine;
 
-        public void OnStateEnter()
+        public void OnStateEnter() 
         {
             SetTarget();
             shootTimer = 0;
