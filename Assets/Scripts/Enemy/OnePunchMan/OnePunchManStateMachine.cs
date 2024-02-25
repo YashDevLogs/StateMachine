@@ -3,27 +3,27 @@ using System.Collections.Generic;
 
 namespace StatePattern.Enemy
 {
-    public class OnePunchManStateMachine : IStateMachine
+    public class OnePunchManStateMachine : GenericStateMachine<OnePunchManController>
     {
-        private OnePunchManController Owner;
-        private IState currentState;
-        protected Dictionary<States, IState> States = new Dictionary<States, IState>();
-
-        public OnePunchManStateMachine(OnePunchManController Owner)
+        public class OnePunchManStateMachine : GenericStateMachine<OnePunchManController>
         {
-            this.Owner = Owner;
-            CreateStates();
-            SetOwner();
-        }
+            public OnePunchManStateMachine(OnePunchManController Owner) : base(Owner)
+            {
+                this.Owner = Owner;
+                CreateStates();
+                SetOwner();
+            }
 
-        private void CreateStates()
-        {
-            States.Add(StateMachine.States.IDLE, new IdleState(this));
-            States.Add(StateMachine.States.ROTATING, new RotatingState(this));
-            States.Add(StateMachine.States.SHOOTING, new ShootingState(this));
-        }
+            private void CreateStates()
+            {
+                States.Add(StateMachine.States.IDLE, new IdleState<OnePunchManController>(this));
+                States.Add(StateMachine.States.ROTATING, new RotatingState<OnePunchManController>(this));
+                States.Add(StateMachine.States.SHOOTING, new ShootingState<OnePunchManController>(this));
+            }
 
-        private void SetOwner()
+        
+
+            private void SetOwner()
         {
             foreach(IState state in States.Values)
             {
